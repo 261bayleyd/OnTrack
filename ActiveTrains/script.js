@@ -12,7 +12,7 @@ async function fetchData() {
     } catch (error) {
     console.error('Fetch failed:', error) // Handles network errors
     }
-    }
+ }
 async function run(){
     let data = await fetchData()
     for (let trainNumber in data) {
