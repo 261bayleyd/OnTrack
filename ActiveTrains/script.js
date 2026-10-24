@@ -27,15 +27,21 @@ async function run(){
             
             for (let stationCode in train.stations) {
                 let station = train.stations[stationCode];
+            
+                // Skip if station is missing from stations_snapshot
+                if (train.stations_snapshot[stationCode] == undefined) {
+                    continue;
+                }
+            
                 let stationName = train.stations_snapshot[stationCode].station_name;
             
-                // Train has definitely reached this station
+                // Train has reached this station
                 if (station.actual.arrival != null || station.actual.departure != null) {
                     lastStation = stationName;
                     continue;
                 }
             
-                // This is the first station the train hasn't reached
+                // First station hasn't been left yet
                 if (lastStation == null) {
                     location = "At " + stationName;
                 } else {
