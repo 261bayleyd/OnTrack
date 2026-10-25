@@ -27,15 +27,24 @@ async function Run(){
             let StationElement = document.createElement("span")
             StationElement.innerHTML = train.stations_snapshot[stationCode].station_name
             let ArrivalElement = document.createElement("span")
-            ArrivalElement.innerHTML = train.stations[stationCode].scheduled.arrival
+            ArrivalElement.innerHTML = train.stations[stationCode]?.scheduled?.arrival?.slice(11, 16) ?? train.stations[stationCode]?.estimated?.arrival?.slice(11, 16) ?? train.stations[stationCode]?.actual?.arrival?.slice(11, 16) ?? ""
+            if (train.stations[stationCode].arrived == true){
+                ArrivalElement.style.fontWeight = "bold"
+            }
             let DepartureElement = document.createElement("span")
-            DepartureElement.innerHTML = station.scheduled.departure;
+            DepartureElement.innerHTML = train.stations[stationCode]?.scheduled?.departure?.slice(11, 16) ?? train.stations[stationCode]?.estimated?.departure?.slice(11, 16) ?? train.stations[stationCode]?.actual?.departure?.slice(11, 16) ?? ""
+            if (train.stations[stationCode].departed == true){
+                DepartureElement.style.fontWeight = "bold"
+            }
             let TimeZoneElement = document.createElement("span")
-            TimeZoneElement.innerHTML = station.tz;
+            TimeZoneElement.innerHTML = train.stations[stationCode].tz;
+            let OtherElement = document.createElement("span")
+            OtherElement.innerHTML = train.stations[stationCode]?.actual?.comment
             row.appendChild(StationElement)
             row.appendChild(ArrivalElement)
             row.appendChild(DepartureElement)
             row.appendChild(TimeZoneElement)
+            row.appendChild(OtherElement)
             row.className = "row"
             stops.appendChild(row)
         }

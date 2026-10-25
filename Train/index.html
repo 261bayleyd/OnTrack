@@ -9,12 +9,18 @@
     <input type = "text" placeholder="Train Number" id = "tnum">
     <button onclick = "Run()">Find Train</button>
     <h2 id = "infoBanner"></h2>
+    <label for="serviceSelect" id="serviceLabel" hidden>Select service:</label>
+    <select id="serviceSelect" onchange="Run(false)" hidden>
+        <option value="">Select a train</option>
+    </select>
+</select>
     <div id = "stops">
         <div id = "titlerow">
             <span>Station</span>
             <span>Arrival</span>
             <span>Departure</span>
             <span>Time zone</span>
+            <span>Comment</span>
             </div>
         </div>
     </div>
