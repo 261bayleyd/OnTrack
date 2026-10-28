@@ -70,7 +70,17 @@ async function Run(fetchNew = true){
         let TimeZoneElement = document.createElement("span")
         TimeZoneElement.innerHTML = train.stations[stationCode].tz;
         let OtherElement = document.createElement("span")
-        OtherElement.innerHTML = train.stations[stationCode]?.actual?.comment
+        if (train.stations[stationCode]?.actual?.pretty_comment != ""){
+            OtherElement.innerHTML = train.stations[stationCode]?.actual?.pretty_comment
+        }
+        else{
+            if (train.stations[stationCode]?.actual?.comment == "ON TIME"){
+                OtherElement.innerHTML = "On Time"
+            }
+            else{
+                OtherElement.innerHTML = train.stations[stationCode]?.actual?.comment
+            }
+        }
         row.appendChild(StationElement)
         row.appendChild(ArrivalElement)
         row.appendChild(DepartureElement)
