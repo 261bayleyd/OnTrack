@@ -1,4 +1,5 @@
 let InfoBanner = document.getElementById("infoBanner")
+let LoadingHi = document.getElementById("loading")
 let stops = document.getElementById("stops")
 let trains = []
 let trainNum = document.getElementById("tnum").value
@@ -42,6 +43,7 @@ function populateDropdown() {
 }
 
 async function Run(fetchNew = true){
+    LoadingHi.innerHTML = "Loading, Please wait..."
     if (fetchNew) {
         let data = await fetchData()
         if (!data) return
@@ -60,6 +62,7 @@ async function Run(fetchNew = true){
     let destinationCode = train.terminuses[1]
     let origin = train.stations_snapshot[originCode].station_name
     let destination = train.stations_snapshot[destinationCode].station_name
+    LoadingHi.innerHTML = ""
     InfoBanner.innerHTML = train.train_number + " " + origin + " To " + destination
 
     for (let stationCode in train.stations) {

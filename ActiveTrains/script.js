@@ -1,3 +1,4 @@
+let LoadingHi = document.getElementById("loading")
 run()
 async function fetchData() {
     try { 
@@ -13,7 +14,9 @@ async function fetchData() {
     }
  }
 async function run(){
+    LoadingHi.innerHTML = "Loading, Please wait..."
     let data = await fetchData()
+    LoadingHi.innerHTML = ""
     for (let trainNumber in data) {
         for (let train of data[trainNumber]) {
             let originCode = train.terminuses[0]
