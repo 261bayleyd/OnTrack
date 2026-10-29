@@ -1,10 +1,19 @@
 let InfoBanner = document.getElementById("infoBanner")
 let stops = document.getElementById("stops")
 let trains = []
-
+let trainNum = document.getElementById("tnum").value
+Awaken()
+function Awaken(){
+    let number = tryFromQuery()
+    console.log(number)
+    if (number != null){
+        document.getElementById("tnum").value = number
+        Run()
+    }
+}
 async function fetchData() {
     try { 
-    let trainNum = document.getElementById("tnum").value
+    trainNum = document.getElementById("tnum").value
     const response = await fetch('https://ontrackapi.261bayley.workers.dev/trains/' + trainNum + '/json')
     if (!response.ok) {
     throw new Error(`HTTP error, Status: ${response.status}`)
@@ -90,3 +99,12 @@ async function Run(fetchNew = true){
         stops.appendChild(row)
     }
 }
+function tryFromQuery() {
+    // Supports: ?service=U9018&date=2025/11/08  OR  ?service=U9018 (defaults to today)
+    const sp = new URLSearchParams(location.search);
+    console.log(sp)
+    const number = sp.get("number");
+    console.log(number)
+    return number
+    return null;
+  }
