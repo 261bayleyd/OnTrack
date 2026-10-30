@@ -75,9 +75,13 @@ async function run(){
         }
     }
 }
-async function RandomFinder(){
-    let data = await fetchData()
-    let randomindex = Math.floor(Math.random() * data.length);
-    let randomtrain = data[randomindex].train_number
-    console.log(randomtrain)
+async function RandomFinder() {
+    const data = await fetchData();
+    if (!data) return;
+
+    const trains = Object.values(data).flat()
+    if (trains.length === 0) return
+
+    const randomTrain = trains[Math.floor(Math.random() * trains.length)]
+    console.log(randomTrain.train_number)
 }
