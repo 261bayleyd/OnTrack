@@ -55,7 +55,7 @@ async function run(){
 
             let row = document.createElement("div")
             let NumberElement = document.createElement("span")
-            NumberElement.innerHTML = train.train_number
+            NumberElement.innerHTML = "<a href = '/Train/index.html?number=" + train.train_number + "'>" + train.train_number + "</a>"
             let NameElement = document.createElement("span")
             NameElement.innerHTML = train.route_name
             let OriginElement = document.createElement("span")
@@ -74,4 +74,10 @@ async function run(){
             stops.appendChild(row)
         }
     }
+}
+async function RandomFinder(){
+    let data = await fetchData()
+    let randomindex = Math.floor(Math.random() * data.length);
+    let randomtrain = data[randomindex].train_number
+    console.log(randomtrain)
 }
