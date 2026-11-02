@@ -1,4 +1,6 @@
 let LoadingHi = document.getElementById("loading")
+let RandomButton = document.getElementById("randombutton")
+let GlobalData = null
 run()
 async function fetchData() {
     try { 
@@ -16,7 +18,10 @@ async function fetchData() {
 async function run(){
     LoadingHi.innerHTML = "Loading, Please wait..."
     let data = await fetchData()
+    GlobalData = data
     LoadingHi.innerHTML = ""
+    stops.style.display = 'block'
+    RandomButton.style.display = 'block'
     for (let trainNumber in data) {
         for (let train of data[trainNumber]) {
             let originCode = train.terminuses[0]
@@ -75,13 +80,11 @@ async function run(){
         }
     }
 }
-async function RandomFinder() {
-    const data = await fetchData();
-    if (!data) return;
-
-    const trains = Object.values(data).flat()
+function RandomFinder() {
+    let trains = Object.values(GlobalData).flat()
     if (trains.length === 0) return
 
-    const randomTrain = trains[Math.floor(Math.random() * trains.length)]
+    let randomTrain = trains[Math.floor(Math.random() * trains.length)]
+    window.open(`/Train/index.html?number=${encodeURIComponent(randomTrain.train_number)}`, "_blank");
     console.log(randomTrain.train_number)
 }

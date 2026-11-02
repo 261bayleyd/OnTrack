@@ -14,15 +14,22 @@
     <select id="serviceSelect" onchange="Run(false)" hidden>
         <option value="">Select a train</option>
     </select>
-</select>
-    <div id = "stops">
-        <div id = "titlerow">
-            <span>Station</span>
-            <span>Arrival</span>
-            <span>Departure</span>
-            <span>Time zone</span>
-            <span>Comment</span>
+
+    <div class = "container">
+        <div class = "left">
+            <div id = "stops" style="display: none;">
+                <div id = "titlerow">
+                    <span>Station</span>
+                    <span>Arrival</span>
+                    <span>Departure</span>
+                    <span>Time zone</span>
+                    <span>Comment</span>
+                </div>
             </div>
+        </div>
+        <div class = "right">
+            <h2 id="NamePrint"></h2>
+            <h2 id="IDPrint"></h2>
         </div>
     </div>
     <script src="script.js" crossorigin="anonymous"></script>

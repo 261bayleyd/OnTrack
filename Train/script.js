@@ -1,5 +1,7 @@
 let InfoBanner = document.getElementById("infoBanner")
 let LoadingHi = document.getElementById("loading")
+let NamePrint = document.getElementById("NamePrint")
+let IDPrint = document.getElementById("IDPrint")
 let stops = document.getElementById("stops")
 let trains = []
 let trainNum = document.getElementById("tnum").value
@@ -17,12 +19,14 @@ async function fetchData() {
     trainNum = document.getElementById("tnum").value
     const response = await fetch('https://ontrackapi.261bayley.workers.dev/trains/' + trainNum + '/json')
     if (!response.ok) {
+    LoadingHi.innerHTML = "Train Not Found"
     throw new Error(`HTTP error, Status: ${response.status}`)
     }
     const data = await response.json()
     console.log(data)
     return data
     } catch (error) {
+    LoadingHi.innerHTML = "Train Not Found"
     console.error('Fetch failed:', error)
     }
 }
@@ -63,7 +67,10 @@ async function Run(fetchNew = true){
     let origin = train.stations_snapshot[originCode].station_name
     let destination = train.stations_snapshot[destinationCode].station_name
     LoadingHi.innerHTML = ""
+    stops.style.display = 'block'
     InfoBanner.innerHTML = train.train_number + " " + origin + " To " + destination
+    IDPrint.innerHTML = train.id
+    NamePrint.innerHTML = train.route_name
 
     for (let stationCode in train.stations) {
         let row = document.createElement("div")
