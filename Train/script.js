@@ -96,6 +96,12 @@ async function Run(fetchNew = true){
             if (train.stations[stationCode]?.actual?.comment == "ON TIME"){
                 OtherElement.innerHTML = "On Time"
             }
+            else if (train.stations[stationCode]?.actual?.comment == "ARRIVED"){
+                OtherElement.innerHTML = "Arrived"
+            }
+            else if (train.stations[stationCode]?.actual?.comment == "DEPARTED"){
+                OtherElement.innerHTML = "Departed"
+            }
             else{
                 OtherElement.innerHTML = train.stations[stationCode]?.actual?.comment
             }
