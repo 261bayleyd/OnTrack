@@ -60,7 +60,7 @@ async function run(){
 
             let row = document.createElement("div")
             let NumberElement = document.createElement("span")
-            NumberElement.innerHTML = "<a href = '/Train/index.html?number=" + train.train_number + "'>" + train.train_number + "</a>"
+            NumberElement.innerHTML = "<a href = '/OnTrack/Train/index.html?number=" + train.train_number + "'>" + train.train_number + "</a>"
             let NameElement = document.createElement("span")
             NameElement.innerHTML = train.route_name
             let OriginElement = document.createElement("span")
@@ -85,6 +85,6 @@ function RandomFinder() {
     if (trains.length === 0) return
 
     let randomTrain = trains[Math.floor(Math.random() * trains.length)]
-    window.open(`/Train/index.html?number=${encodeURIComponent(randomTrain.train_number)}`, "_blank");
+    window.open(`/OnTrack/Train/index.html?number=${encodeURIComponent(randomTrain.train_number)}`, "_blank");
     console.log(randomTrain.train_number)
 }
