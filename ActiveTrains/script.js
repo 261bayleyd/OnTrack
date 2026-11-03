@@ -19,7 +19,8 @@ async function run(){
     LoadingHi.innerHTML = "Loading, Please wait..."
     let data = await fetchData()
     GlobalData = data
-    LoadingHi.innerHTML = ""
+    let trainsactive = Object.values(GlobalData).flat()
+    LoadingHi.innerHTML = trainsactive.length + " Currently Active Trains"
     stops.style.display = 'block'
     RandomButton.style.display = 'block'
     for (let trainNumber in data) {
