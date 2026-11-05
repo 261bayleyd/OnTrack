@@ -1,10 +1,10 @@
 let LoadingHi = document.getElementById("loading")
 let RandomButton = document.getElementById("randombutton")
 let GlobalData = null
-run()
-async function fetchData() {
+run("https://ontrackapi.261bayley.workers.dev/trains/json")
+async function fetchData(datainfo) {
     try { 
-    const response = await fetch('https://ontrackapi.261bayley.workers.dev/trains/json')    // check if the HTTP status code is 200
+    const response = await fetch(datainfo)    // check if the HTTP status code is 200
     if (!response.ok) {
     throw new Error(`HTTP error, Status: ${response.status}`)
     }
@@ -15,9 +15,10 @@ async function fetchData() {
     console.error('Fetch failed:', error) // Handles network errors
     }
  }
-async function run(){
+async function run(datainfo){
+    let stationIndexJSON = await fetchData("../amtrak_stations_by_code.json")
     LoadingHi.innerHTML = "Loading, Please wait..."
-    let data = await fetchData()
+    let data = await fetchData(datainfo)
     GlobalData = data
     let trainsactive = Object.values(GlobalData).flat()
     LoadingHi.innerHTML = trainsactive.length + " Currently Active Trains"
@@ -27,22 +28,31 @@ async function run(){
         for (let train of data[trainNumber]) {
             let originCode = train.terminuses[0]
             let destinationCode = train.terminuses[1]
-            let origin = train.stations_snapshot[originCode].station_name
-            let destination = train.stations_snapshot[destinationCode].station_name
+            let origin = train.stations_snapshot[originCode]?.station_name ?? stationIndexJSON[originCode].StationName ?? originCode
+            let destination = train.stations_snapshot[destinationCode]?.station_name ?? stationIndexJSON[destinationCode].StationName ?? destinationCode
 
             let location;
             let lastStation = null;
             
             for (let stationCode in train.stations) {
                 let station = train.stations[stationCode];
+                let stationName = ""
             
                 // Skip if station is missing from stations_snapshot
                 if (train.stations_snapshot[stationCode] == undefined) {
+                    console.log(stationCode)
+                    console.log(stationIndexJSON[stationCode].StationName)
+                    console.log(stationIndexJSON[stationCode])
+                    stationName = stationIndexJSON[stationCode].StationName ?? stationCode
                     continue;
                 }
-            
-                let stationName = train.stations_snapshot[stationCode].station_name;
-            
+                else{
+                    console.log(stationCode)
+                    console.log(stationIndexJSON[stationCode].StationName)
+                    console.log(stationIndexJSON[stationCode])
+                    stationName = train?.stations_snapshot[stationCode]?.station_name ?? stationIndexJSON[stationCode].StationName ?? stationCode
+                }
+                        
                 // Train has reached this station
                 if (station.actual.arrival != null || station.actual.departure != null) {
                     lastStation = stationName;
