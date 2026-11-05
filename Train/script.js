@@ -109,7 +109,7 @@ async function Run(fetchNew = true){
         row.appendChild(StationElement)
         row.appendChild(ArrivalElement)
         row.appendChild(DepartureElement)
-        row.appendChild(TimeZoneElement)
+        // row.appendChild(TimeZoneElement)
         row.appendChild(OtherElement)
         row.className = "row"
         stops.appendChild(row)

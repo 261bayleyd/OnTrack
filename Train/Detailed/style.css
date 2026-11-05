@@ -1,0 +1,28 @@
+#titlerow{
+    font-style: 'bold';
+    font-weight: 700;
+    /* display: flex;
+    justify-content: space-between;
+    */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+.row{
+  font-weight: 500;
+  /* display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+  .container {
+  display: flex;
+  width: 100%;
+}
+
+.left {
+  flex: 4;
+}
+
+.right {
+  flex: 1;
+}

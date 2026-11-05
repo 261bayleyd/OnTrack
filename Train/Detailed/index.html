@@ -1,0 +1,41 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Detailed Train - OnTrack</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <button><a href = "../">Switch to Simple Mode</a></button>
+    <input type = "text" placeholder="Train Number" id = "tnum">
+    <button onclick = "Run()">Find Train</button>
+    <h2 id = "loading"></h2>
+    <h2 id = "infoBanner"></h2>
+    <label for="serviceSelect" id="serviceLabel" hidden>Select service:</label>
+    <select id="serviceSelect" onchange="Run(false)" hidden>
+        <option value="">Select a train</option>
+    </select>
+
+    <div class = "container">
+        <div class = "left">
+            <div id = "stops" style="display: none;">
+                <div id = "titlerow">
+                    <span>Station</span>
+                    <span>Scheduled Arrival</span>
+                    <span>Scheduled Departure</span>
+                    <span>Actual/Estimated Arrival</span>
+                    <span>Actual/Estimated Departure</span>
+                    <span>Station Type</span>
+                    <span>Time zone</span>
+                    <span>Comment</span>
+                </div>
+            </div>
+        </div>
+        <div class = "right">
+            <h2 id="NamePrint"></h2>
+            <h2 id="IDPrint"></h2>
+        </div>
+    </div>
+    <script src="script.js" crossorigin="anonymous"></script>
+</body>
+</html>
