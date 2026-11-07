@@ -15,14 +15,22 @@
 <h4>Q: How long did it Take you to make OnTrack? <br>
 A: So far it has taken me about a month but it is by no means finished!
 <br>
+
+<br>
 Q: What Coding Languages do you know? <br>
 A: I know a good amount of JavaScript and HTML and a bit of CSS and Python.
+<br>
 
+<br>
 Q: How do I find my train Number? <br>
 A: Usually, You can see it on the Departure screen at the station or you may see it onboard the train or from the conductor over the PA.
+<br>
 
+<br>
 Q: I see "undefined" on OnTrack, what does that mean? <br>
 A: undefined is what the code produces when there is an issue or something is not working, Sorry!
+<br>
 
+<br>
 Q: Can I track Amtrak Busses on OnTrack? <br>
 A: Nope!</h4>
