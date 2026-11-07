@@ -11,3 +11,18 @@
 <h4>The Simple train information page shows the Origin, Destination, Arrival Time, Departure Time, Number and more of the train you decide to search.</h4>
 <h3>Detailed Train Information</h3>
 <h4>The Detailed Train Information page shows the same stuff as the simple page but even more, it shows the Station name, Scheduled Arrival & Depature, Actual/Estimated Arrival & Departure, Station Type (eg. Platform With Shelter), Time Zone and More. It is great for people who want all of the Details.</h4>
+<h1>FAQ's</h1>
+<h4>Q: How long did it Take you to make OnTrack?
+A: So far it has taken me about a month but it is by no means finished!
+
+Q: What Coding Languages do you know?
+A: I know a good amount of JavaScript and HTML and a bit of CSS and Python.
+
+Q: How do I find my train Number?
+A: Usually, You can see it on the Departure screen at the station or you may see it onboard the train or from the conductor over the PA.
+
+Q: I see "undefined" on OnTrack, what does that mean?
+A: undefined is what the code produces when there is an issue or something is not working, Sorry!
+
+Q: Can I track Amtrak Busses on OnTrack?
+A: Nope!</h4>
