@@ -14,7 +14,7 @@
 <h1>FAQ's</h1>
 <h4>Q: How long did it Take you to make OnTrack? <br>
 A: So far it has taken me about a month but it is by no means finished!
-
+<br>
 Q: What Coding Languages do you know? <br>
 A: I know a good amount of JavaScript and HTML and a bit of CSS and Python.
 
