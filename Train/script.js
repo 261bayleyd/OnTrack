@@ -5,6 +5,16 @@ let IDPrint = document.getElementById("IDPrint")
 let stops = document.getElementById("stops")
 let trains = []
 let trainNum = document.getElementById("tnum").value
+let currentHost = window.location.hostname;
+let dev
+if (currentHost == "localhost" || currentHost == "127.0.0.1"|| currentHost == "musical-space-fishstick-q7p49qpjqrp924q67-5501.app.github.dev"){
+  dev = true
+  console.log("Dev mode enabled")
+}
+else{
+  dev = false
+  console.log("Prod mode enabled")
+}
 Awaken()
 function Awaken(){
     let number = tryFromQuery()
@@ -30,7 +40,27 @@ async function fetchData() {
     console.error('Fetch failed:', error)
     }
 }
-
+async function fetchOtherData() {
+    try { 
+    let response
+    if (dev == true){
+    response = await fetch('/amtrak_stations_by_code.json')    // check if the HTTP status code is 200
+    }
+    else{
+    response = await fetch('/OnTrack/amtrak_stations_by_code.json')    // check if the HTTP status code is 200
+    }
+    if (!response.ok) {
+    LoadingHi.innerHTML = "Train Not Found"
+    throw new Error(`HTTP error, Status: ${response.status}`)
+    }
+    const data = await response.json() // Parses JSON response body console.log(data) // can return data from here
+    console.log(data)
+    return data
+    } catch (error) {
+    LoadingHi.innerHTML = "Train Not Found"
+    console.error('Fetch failed:', error) // Handles network errors
+    }
+ }
 function populateDropdown() {
     let dropdown = document.getElementById("serviceSelect")
     dropdown.innerHTML = ""
@@ -55,7 +85,7 @@ async function Run(fetchNew = true){
         if (trains.length === 0) return
         populateDropdown()
     }
-
+    jsonindex = await fetchOtherData()
     let dropdown = document.getElementById("serviceSelect")
     let train = trains[dropdown.value]
     if (!train) return
@@ -64,8 +94,8 @@ async function Run(fetchNew = true){
 
     let originCode = train.terminuses[0]
     let destinationCode = train.terminuses[1]
-    let origin = train.stations_snapshot[originCode].station_name
-    let destination = train.stations_snapshot[destinationCode].station_name
+    let origin = train.stations_snapshot[originCode]?.station_name ?? jsonindex[originCode]?.StationName ?? originCode
+    let destination = train.stations_snapshot[destinationCode]?.station_name ?? jsonindex[destinationCode]?.StationName ?? destinationCode
     LoadingHi.innerHTML = ""
     stops.style.display = 'block'
     InfoBanner.innerHTML = train.train_number + " " + origin + " To " + destination
@@ -75,7 +105,7 @@ async function Run(fetchNew = true){
     for (let stationCode in train.stations) {
         let row = document.createElement("div")
         let StationElement = document.createElement("span")
-        StationElement.innerHTML = train.stations_snapshot[stationCode].station_name
+        StationElement.innerHTML = train.stations_snapshot[stationCode]?.station_name ?? jsonindex[stationCode]?.StationName
         let ArrivalElement = document.createElement("span")
         ArrivalElement.innerHTML = train.stations[stationCode]?.scheduled?.arrival?.slice(11, 16) ?? train.stations[stationCode]?.estimated?.arrival?.slice(11, 16) ?? train.stations[stationCode]?.actual?.arrival?.slice(11, 16) ?? ""
         if (train.stations[stationCode].arrived == true){
