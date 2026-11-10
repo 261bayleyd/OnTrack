@@ -169,3 +169,11 @@ function tryFromQuery() {
     return number
     return null;
   }
+function switchDetailed(){
+    if (dev == true){
+        window.open(`/Train/index.html?number=${encodeURIComponent(trainNum)}`, "_blank");
+    }
+    else{
+        window.open(`/OnTrack/Train/index.html?number=${encodeURIComponent(trainNum)}`, "_blank");
+    }
+}

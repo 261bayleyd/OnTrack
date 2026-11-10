@@ -154,3 +154,11 @@ function tryFromQuery() {
     return number
     return null;
   }
+function switchDetailed(){
+    if (dev == true){
+        window.open(`/Train/Detailed/index.html?number=${encodeURIComponent(trainNum)}`, "_blank");
+    }
+    else{
+        window.open(`/OnTrack/Train/Detailed/index.html?number=${encodeURIComponent(trainNum)}`, "_blank");
+    }
+}

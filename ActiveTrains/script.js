@@ -1,6 +1,16 @@
 let LoadingHi = document.getElementById("loading")
 let RandomButton = document.getElementById("randombutton")
 let GlobalData = null
+let currentHost = window.location.hostname;
+let dev
+if (currentHost == "localhost" || currentHost == "127.0.0.1"|| currentHost == "musical-space-fishstick-q7p49qpjqrp924q67-5501.app.github.dev"){
+  dev = true
+  console.log("Dev mode enabled")
+}
+else{
+  dev = false
+  console.log("Prod mode enabled")
+}
 run("https://ontrackapi.261bayley.workers.dev/trains/json")
 async function fetchData(datainfo) {
     try { 
@@ -71,7 +81,12 @@ async function run(datainfo){
 
             let row = document.createElement("div")
             let NumberElement = document.createElement("span")
-            NumberElement.innerHTML = "<a href = '/OnTrack/Train/index.html?number=" + train.train_number + "'>" + train.train_number + "</a>"
+            if (dev == true){
+                NumberElement.innerHTML = "<a href = '/Train/index.html?number=" + train.train_number + "'>" + train.train_number + "</a>"
+            }
+            else{
+                NumberElement.innerHTML = "<a href = '/OnTrack/Train/index.html?number=" + train.train_number + "'>" + train.train_number + "</a>"
+            }
             let NameElement = document.createElement("span")
             NameElement.innerHTML = train.route_name
             let OriginElement = document.createElement("span")
