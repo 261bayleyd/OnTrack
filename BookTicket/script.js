@@ -31,6 +31,7 @@ async function PullJsonIndex(){
         DestinationDropdown.appendChild(ThisDropdown)
     }
 }
+
 async function fetchOtherData() {
     try { 
     let response
