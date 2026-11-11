@@ -5,17 +5,17 @@ let adults = document.getElementById("adults");
 let OriginDropdown = document.getElementById("OriginDropdown");
 let DestinationDropdown = document.getElementById("DestinationDropdown");
 let currentHost = window.location.hostname;
-let dev = true
+let dev
 let jsonindex
 PullJsonIndex()
-// if (currentHost == "localhost" || currentHost == "127.0.0.1"|| currentHost == "musical-space-fishstick-q7p49qpjqrp924q67-5501.app.github.dev"){
-//   dev = true
-//   console.log("Dev mode enabled")
-// }
-// else{
-//   dev = false
-//   console.log("Prod mode enabled")
-// }
+if (currentHost == "localhost" || currentHost == "127.0.0.1"|| currentHost == "musical-space-fishstick-q7p49qpjqrp924q67-5501.app.github.dev"){
+  dev = true
+  console.log("Dev mode enabled")
+}
+else{
+  dev = false
+  console.log("Prod mode enabled")
+}
 async function PullJsonIndex(){
     jsonindex = await fetchOtherData()
     for (let stationCode in jsonindex){
