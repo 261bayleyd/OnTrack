@@ -14,11 +14,20 @@
         <option value="Return">Round-Trip</option>
     </select>
 
+    <!-- <h3>Origin</h3>
+    <input type="text" id="origin" placeholder="Origin Station Code"> -->
+    
     <h3>Origin</h3>
-    <input type="text" id="origin" placeholder="Origin Station Code">
-
+    <select id="OriginDropdown">
+        <option>-Select a Station-</option>
+    </select>
+<!-- 
     <h3>Destination</h3>
-    <input type="text" id="destination" placeholder="Destination Station Code">
+    <input type="text" id="destination" placeholder="Destination Station Code"> -->
+    <h3>Destination</h3>
+    <select id="DestinationDropdown">
+        <option>-Select a Station-</option>
+    </select>
 
     <h3>Date</h3>
     <input type="text" id="date" placeholder="MM/DD/YYYY" maxlength="10">
@@ -49,9 +58,9 @@
         <option value="false">US Dollars</option>
         <option value="true">Points</option>
     </select>
-
     <br><br>
     <button onclick="Submit()">Find Trains</button>
+    <p>You will be redirected to Amtrak to select your train and make a purchase.</p>
 
     <script src="script.js" crossorigin="anonymous"></script>
 </body>
