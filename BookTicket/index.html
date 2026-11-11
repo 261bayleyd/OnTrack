@@ -1,5 +1,5 @@
 <html>
-    <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Book a Ticket - OnTrack</title>
@@ -7,11 +7,52 @@
 </head>
 <body>
     <h1>Book an Amtrak Ticket</h1>
-    <input type = "text" placeholder="Origin Station Code" id = "origin">
-    <input type = "text" placeholder="Destination Station Code" id = "destination">
-    <input type = "text" placeholder="Date MM/DD/YYYY" id = "date" lang="en-US">
-    <input type = "number" placeholder="Number of Adults" id = "adults">
-    <button onclick = "Submit()">Submit</button>
+
+    <h3>Trip Type</h3>
+    <select id="tripType">
+        <option value="OneWay">One-Way</option>
+        <option value="Return">Round-Trip</option>
+    </select>
+
+    <h3>Origin</h3>
+    <input type="text" id="origin" placeholder="Origin Station Code">
+
+    <h3>Destination</h3>
+    <input type="text" id="destination" placeholder="Destination Station Code">
+
+    <h3>Date</h3>
+    <input type="text" id="date" placeholder="MM/DD/YYYY" maxlength="10">
+
+    <h3>Return Date</h3>
+    <input type="text" id="returnDate" placeholder="MM/DD/YYYY" maxlength="10">
+
+    <h3>Adults</h3>
+    <input type="number" id="adults" value="1" min="0">
+
+    <h3>Seniors</h3>
+    <input type="number" id="seniors" value="0" min="0">
+
+    <h3>Youth</h3>
+    <input type="number" id="youth" value="0" min="0">
+
+    <h3>Children</h3>
+    <input type="number" id="children" value="0" min="0">
+
+    <h3>Infants</h3>
+    <input type="number" id="infants" value="0" min="0">
+
+    <h3>Promo Code</h3>
+    <input type="text" id="promoCode" placeholder="Promotion Code">
+
+    <h3>Currency</h3>
+    <select id="usePoints">
+        <option value="false">US Dollars</option>
+        <option value="true">Points</option>
+    </select>
+
+    <br><br>
+    <button onclick="Submit()">Find Trains</button>
+
     <script src="script.js" crossorigin="anonymous"></script>
 </body>
 </html>
