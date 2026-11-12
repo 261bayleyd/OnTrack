@@ -66,8 +66,9 @@ function urlAutoFill() {
         }
     }
 }
-PullJsonIndex()
-urlAutoFill()
+PullJsonIndex().then(() => {
+    urlAutoFill()
+})
 
 if (currentHost == "localhost" || currentHost == "127.0.0.1"|| currentHost == "musical-space-fishstick-q7p49qpjqrp924q67-5501.app.github.dev"){
   dev = true
