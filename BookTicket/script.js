@@ -84,7 +84,7 @@ async function PullJsonIndex(){
     for (let stationCode in jsonindex){
         let ThisDropdown = document.createElement("option")
         ThisDropdown.value = stationCode
-        if (jsonindex[stationCode].Name != "" || jsonindex[stationCode].Name != null){
+        if (jsonindex[stationCode].Name != ""){
             ThisDropdown.innerHTML = jsonindex[stationCode].StationName + " - " + jsonindex[stationCode].Name
         }
         else{
