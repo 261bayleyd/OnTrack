@@ -7,7 +7,6 @@ let DestinationDropdown = document.getElementById("DestinationDropdown");
 let currentHost = window.location.hostname;
 let dev
 let jsonindex
-urlAutoFill()
 function urlAutoFill() {
     let urlAUTOFILL = tryFromQuery()
 
@@ -68,6 +67,8 @@ function urlAutoFill() {
     }
 }
 PullJsonIndex()
+urlAutoFill()
+
 if (currentHost == "localhost" || currentHost == "127.0.0.1"|| currentHost == "musical-space-fishstick-q7p49qpjqrp924q67-5501.app.github.dev"){
   dev = true
   console.log("Dev mode enabled")
