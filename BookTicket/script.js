@@ -7,6 +7,66 @@ let DestinationDropdown = document.getElementById("DestinationDropdown");
 let currentHost = window.location.hostname;
 let dev
 let jsonindex
+urlAutoFill()
+function urlAutoFill() {
+    let urlAUTOFILL = tryFromQuery()
+
+    if (urlAUTOFILL == null) {
+        return
+    }
+
+    if (urlAUTOFILL["origin"] != null) {
+        OriginDropdown.value = urlAUTOFILL["origin"]
+    }
+
+    if (urlAUTOFILL["destination"] != null) {
+        DestinationDropdown.value = urlAUTOFILL["destination"]
+    }
+
+    if (urlAUTOFILL["date"] != null) {
+        date.value = urlAUTOFILL["date"]
+    }
+
+    if (urlAUTOFILL["returnDate"] != null) {
+        document.getElementById("returnDate").value = urlAUTOFILL["returnDate"]
+    }
+
+    if (urlAUTOFILL["tripType"] != null) {
+        document.getElementById("tripType").value = urlAUTOFILL["tripType"]
+    }
+
+    if (urlAUTOFILL["adults"] != null) {
+        adults.value = urlAUTOFILL["adults"]
+    }
+
+    if (urlAUTOFILL["seniors"] != null) {
+        document.getElementById("seniors").value = urlAUTOFILL["seniors"]
+    }
+
+    if (urlAUTOFILL["youth"] != null) {
+        document.getElementById("youth").value = urlAUTOFILL["youth"]
+    }
+
+    if (urlAUTOFILL["children"] != null) {
+        document.getElementById("children").value = urlAUTOFILL["children"]
+    }
+
+    if (urlAUTOFILL["infants"] != null) {
+        document.getElementById("infants").value = urlAUTOFILL["infants"]
+    }
+
+    if (urlAUTOFILL["promo"] != null) {
+        document.getElementById("promoCode").value = urlAUTOFILL["promo"]
+    }
+
+    if (urlAUTOFILL["currency"] != null) {
+        if (urlAUTOFILL["currency"] === "points") {
+            document.getElementById("usePoints").checked = true
+        } else {
+            document.getElementById("usePoints").checked = false
+        }
+    }
+}
 PullJsonIndex()
 if (currentHost == "localhost" || currentHost == "127.0.0.1"|| currentHost == "musical-space-fishstick-q7p49qpjqrp924q67-5501.app.github.dev"){
   dev = true
@@ -165,3 +225,23 @@ function Submit() {
         document.getElementById("usePoints").value === "true"
     );
 }
+function tryFromQuery() {
+    // Supports: ?service=U9018&date=2025/11/08  OR  ?service=U9018 (defaults to today)
+    const sp = new URLSearchParams(location.search);
+    console.log(sp)
+    const tripType = sp.get("tripType");
+    const origin = sp.get("origin");
+    const destination = sp.get("destination");
+    const date = sp.get("date");
+    const returnDate = sp.get("returnDate");
+    const adults = sp.get("adults");
+    const seniors = sp.get("seniors");
+    const youth = sp.get("youth");
+    const children = sp.get("children");
+    const infants = sp.get("infants");
+    const currency = sp.get("currency");
+    const promo = sp.get("promo");
+    let urlObject = {tripType, origin, destination, date, returnDate, adults, seniors, youth, children, infants, currency, promo}
+    console.log(urlObject)
+    return urlObject
+  }

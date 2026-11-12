@@ -1,5 +1,6 @@
 let LoadingHi = document.getElementById("loading")
 let RandomButton = document.getElementById("randombutton")
+let OpenType = document.getElementById("OpenType")
 let GlobalData = null
 let currentHost = window.location.hostname;
 let dev
