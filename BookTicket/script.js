@@ -68,10 +68,14 @@ function urlAutoFill() {
 
     if (urlAUTOFILL["currency"] != null) {
         if (urlAUTOFILL["currency"] === "points") {
-            document.getElementById("usePoints").checked = true
+            document.getElementById("usePoints").value = true
         } else {
-            document.getElementById("usePoints").checked = false
+            document.getElementById("usePoints").value = false
         }
+    }
+    if (urlAUTOFILL["submitAmtrak"] == "true"){
+        Submit()
+        // console.log("To sumbit to amtrak, run Submit() in the console, this feature is not automatic yet.")
     }
 }
 PullJsonIndex().then(() => {
@@ -244,7 +248,8 @@ function tryFromQuery() {
     const infants = sp.get("infants");
     const currency = sp.get("currency");
     const promo = sp.get("promo");
-    let urlObject = {tripType, origin, destination, date, returnDate, adults, seniors, youth, children, infants, currency, promo}
+    const submitAmtrak = sp.get("submitAmtrak");
+    let urlObject = {tripType, origin, destination, date, returnDate, adults, seniors, youth, children, infants, currency, promo, submitAmtrak}
     console.log(urlObject)
     return urlObject
   }
