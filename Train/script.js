@@ -3,6 +3,7 @@ let LoadingHi = document.getElementById("loading")
 let NamePrint = document.getElementById("NamePrint")
 let IDPrint = document.getElementById("IDPrint")
 let stops = document.getElementById("stops")
+let TicketPrint = document.getElementById("TicketPrint")
 let trains = []
 let trainNum = document.getElementById("tnum").value
 let currentHost = window.location.hostname;
@@ -100,6 +101,12 @@ async function Run(fetchNew = true){
     stops.style.display = 'block'
     InfoBanner.innerHTML = train.train_number + " " + origin + " To " + destination
     IDPrint.innerHTML = train.id
+    if (dev == true){
+        TicketPrint.innerHTML = "<a href ='/BookTicket/index.html?origin=" +originCode+"&destination="+destinationCode+ "'>"+"Buy an Amtrak Ticket from " + origin + " to " + destination + "</a>"
+    }
+    else{
+        TicketPrint.innerHTML = "<a href ='OnTrack/BookTicket/index.html?origin=" +originCode+"&destination="+destinationCode+ "'>"+"Buy an Amtrak Ticket from " + origin + " to " + destination + "</a>"
+    }
     NamePrint.innerHTML = train.route_name
 
     for (let stationCode in train.stations) {

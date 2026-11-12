@@ -105,6 +105,12 @@ async function Run(fetchNew = true){
     stops.style.display = 'block'
     InfoBanner.innerHTML = train.train_number + " " + origin + " To " + destination
     IDPrint.innerHTML = train.id
+    if (dev == true){
+        TicketPrint.innerHTML = "<a href ='/BookTicket/index.html?origin=" +originCode+"&destination="+destinationCode+ "'>"+"Buy an Amtrak Ticket from " + origin + " to " + destination + "</a>"
+    }
+    else{
+        TicketPrint.innerHTML = "<a href ='OnTrack/BookTicket/index.html?origin=" +originCode+"&destination="+destinationCode+ "'>"+"Buy an Amtrak Ticket from " + origin + " to " + destination + "</a>"
+    }
     NamePrint.innerHTML = train.route_name
 
     for (let stationCode in train.stations) {
