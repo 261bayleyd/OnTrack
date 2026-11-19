@@ -118,10 +118,61 @@ async function Run(fetchNew = true){
         if (train.stations[stationCode].arrived == true){
             ArrivalElement.style.fontWeight = "bold"
         }
+        // if ()
+        let latenessInteger
+        if (train.stations[stationCode].scheduled.arrival){
+            if(train.stations[stationCode].actual.arrival)(
+                latenessInteger = (Date.parse(train.stations[stationCode].actual.arrival) - Date.parse(train.stations[stationCode].scheduled.arrival)) /1000 / 60
+            )
+            // else if (train.stations[stationCode].estimated.arrival){
+            //     latenessInteger = Date.parse(train.stations[stationCode].estimated.arrival) / 1000 / 60 - Date.parse(train.stations[stationCode].scheduled.arrival) / 1000 / 60
+            // }
+            else{
+                latenessInteger = 0
+            }
+        }
+        else{
+            latenessInteger = 0
+        }
+        if (latenessInteger < 0){
+            ArrivalElement.style.color = "#3284db"
+        }
+        if (latenessInteger = 0){
+            ArrivalElement.style.color = "#7bd19e"
+        }
+        if (latenessInteger < 31 && latenessInteger > 0){
+            ArrivalElement.style.color = "#f2e446"
+        }
+        console.log(latenessInteger)
         let DepartureElement = document.createElement("span")
         DepartureElement.innerHTML = train.stations[stationCode]?.scheduled?.departure?.slice(11, 16) ?? train.stations[stationCode]?.estimated?.departure?.slice(11, 16) ?? train.stations[stationCode]?.actual?.departure?.slice(11, 16) ?? ""
         if (train.stations[stationCode].departed == true){
             DepartureElement.style.fontWeight = "bold"
+        }
+        let latenessIntegerdep
+        if (train.stations[stationCode].scheduled.departure){
+            if(train.stations[stationCode].actual.departure)(
+                latenessIntegerdep = (Date.parse(train.stations[stationCode].actual.departure) - Date.parse(train.stations[stationCode].scheduled.departure)) /1000 / 60
+            )
+            // else if (train.stations[stationCode].estimated.arrival){
+            //     latenessInteger = Date.parse(train.stations[stationCode].estimated.arrival) / 1000 / 60 - Date.parse(train.stations[stationCode].scheduled.arrival) / 1000 / 60
+            // }
+            else{
+                latenessIntegerdep = 0
+            }
+        }
+        else{
+            latenessIntegerdep = 0
+        }
+        console.log(latenessIntegerdep)
+        if (latenessIntegerdep < 0){
+            DepartureElement.style.color = "#3284db"
+        }
+        if (latenessIntegerdep == 0){
+            DepartureElement.style.color = "#267802"
+        }
+        if (latenessIntegerdep < 31 && latenessIntegerdep > 0){
+            DepartureElement.style.color = "#b08100"
         }
         let TimeZoneElement = document.createElement("span")
         TimeZoneElement.innerHTML = train.stations[stationCode].tz;

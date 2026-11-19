@@ -89,10 +89,10 @@ async function PullJsonIndex(){
         let ThisDropdown = document.createElement("option")
         ThisDropdown.value = stationCode
         if (jsonindex[stationCode].Name != ""){
-            ThisDropdown.innerHTML = jsonindex[stationCode].StationName + " - " + jsonindex[stationCode].Name
+            ThisDropdown.innerHTML = stationCode + " - " + jsonindex[stationCode].StationName + " - " + jsonindex[stationCode].Name
         }
         else{
-            ThisDropdown.innerHTML = jsonindex[stationCode].StationName
+            ThisDropdown.innerHTML = stationCode + " - " + jsonindex[stationCode].StationName
         }
         OriginDropdown.appendChild(ThisDropdown)
     }
@@ -100,10 +100,10 @@ async function PullJsonIndex(){
         let ThisDropdown = document.createElement("option")
         ThisDropdown.value = stationCode
         if (jsonindex[stationCode].Name != ""){
-            ThisDropdown.innerHTML = jsonindex[stationCode].StationName + " - " + jsonindex[stationCode].Name
+            ThisDropdown.innerHTML = stationCode + " - " + jsonindex[stationCode].StationName + " - " + jsonindex[stationCode].Name
         }
         else{
-            ThisDropdown.innerHTML = jsonindex[stationCode].StationName
+            ThisDropdown.innerHTML = stationCode + " - " + jsonindex[stationCode].StationName
         }
         DestinationDropdown.appendChild(ThisDropdown)
     }
